@@ -295,15 +295,17 @@ WHERE 1=1 " . ($useOwner ? $ownerCondition : '') . $objectCondition . " ORDER BY
             if (!empty($package) && !empty($schema)) {
                 $ownerCondition = 'AND args.OWNER = :ownerParam AND args.PACKAGE_NAME = :packageParam ';
                 $params = [
-                    ':objectParam' => $object,
-                    ':packageParam' => $package,
-                    ':ownerParam' => $schema
+                    // TODO isogai change strtouppser
+                    ':objectParam' => strtoupper($object),
+                    ':packageParam' => strtoupper($package),
+                    ':ownerParam' => strtoupper($schema)
                 ];
             } elseif (!empty($package)) {
                 $ownerCondition = 'AND (args.OWNER = :packageParam OR args.PACKAGE_NAME = :packageParam) ';
                 $params = [
-                    ':objectParam' => $object,
-                    ':packageParam' => $package,
+                    // TODO isogai change strtouppser
+                    ':objectParam' => strtoupper($object),
+                    ':packageParam' => strtoupper($package),
                 ];
             }
         }
