@@ -284,7 +284,8 @@ WHERE 1=1 " . ($useOwner ? $ownerCondition : '') . $objectCondition . " ORDER BY
         }
         $ownerCondition = '';
         $params = [
-            ':objectParam' => $object,
+            // TODO isogai change strtouppser
+            ':objectParam' => strtoupper($object),
         ];
         if (empty($schema) && empty($package)) {
             $argumentsTable = 'user_arguments';
